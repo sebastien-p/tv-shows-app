@@ -11,7 +11,6 @@ var plugins = require('gulp-load-plugins')();
 var FOLDERS = {
   build: './build/',
   modules: './www/modules/',
-  sass: './scss/',
   www: './www/'
 };
 
@@ -20,7 +19,6 @@ var PATTERNS = {
   css: '**/*.css',
   jade: '**/*.jade',
   js: '**/*.js',
-  sass: '**/*.sass',
   images: '**/*.{png,jpg,gif,svg}',
   pgbomit: '**/.pgbomit'
 };
@@ -77,10 +75,6 @@ var TASKS = {
     root: 'modules/',
     module: 'app'
   },
-  'sass': {
-    src: FOLDERS.sass + 'ionic.app.sass',
-    dest: FOLDERS.www + 'css/'
-  },
   'watch': [{
     src: [
       FOLDERS.modules + PATTERNS.jade,
@@ -88,9 +82,6 @@ var TASKS = {
       './bower.json'
     ],
     tasks: ['inject']
-  }, {
-    src: FOLDERS.sass + PATTERNS.sass,
-    tasks: ['sass']
   }]
 };
 

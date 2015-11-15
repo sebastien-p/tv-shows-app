@@ -1,3 +1,3 @@
 'use strict';
 
-module.exports = [['sass', 'inject']];
+module.exports = [['inject']];
