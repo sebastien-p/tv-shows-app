@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "ionic-app-starter",
+  "name": "tv-shows-app",
   "version": "1.0.0-dev",
-  "description": "Easily start an Ionic app",
+  "description": "Search TV shows infos",
   "devDependencies": {
     "bower": "^1.3.3",
     "cordova": "^5.2.0",

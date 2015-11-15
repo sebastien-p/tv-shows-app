@@ -3,10 +3,10 @@
   xmlns="http://www.w3.org/ns/widgets"
   xmlns:cdv="http://cordova.apache.org/ns/1.0"
   xmlns:gap="http://phonegap.com/ns/1.0"
-  id="reverse.domain.name"
+  id="pro.fing.app.tv-shows"
   version="1.0.0-dev">
-  <name>ionic-app-starter</name>
-  <description>Easily start an Ionic app</description>
+  <name>TV Shows</name>
+  <description>Search TV shows infos</description>
   <author
     href="https://twitter.com/fingerproof"
     email="sp@fing.pro">
