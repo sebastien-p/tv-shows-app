@@ -12,6 +12,8 @@ ion-view.home(view-title="Home")
   ion-content
     ion-list
       ion-item(ng-if="!search.results.length") No TV show found.
-      ion-item(
-        ng-repeat="show in search.results | orderBy:['name', '-fromYear'] track by show.id")
+      ion-item.item-icon-right(
+        ng-repeat="show in search.results | orderBy:['name', '-fromYear'] track by show.id",
+        ui-sref="show({ showId: show.id })")
         | #[strong {{ ::show.name }}] ({{ ::show.fromYear }})
+        i.icon.ion-ios-arrow-forward

@@ -9,7 +9,7 @@
    * @constant SHOWS_API_URL
    * @type {String}
    */
-  var SHOWS_API_URL = 'http://series-ortiz.rhcloud.com/series?s=thetvdb';
+  var SHOWS_API_URL = 'http://series-ortiz.rhcloud.com/series';
 
   module.constant('SHOWS_API_URL', SHOWS_API_URL);
 
