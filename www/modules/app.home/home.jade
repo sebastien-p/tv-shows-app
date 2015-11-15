@@ -1,2 +1,17 @@
-ion-view(view-title="Home")
-  ion-content Home view
+ion-view.home(view-title="Home")
+  ion-header-bar.bar-subheader.bar-dark.item-input-inset(no-tap-scroll="true")
+    label.item-input-wrapper
+      input(
+        placeholder="Enter a TV show name",
+        ng-model="search.query",
+        type="search")
+      button.button.button-clear.button-dark.icon.ion-ios-close-empty.ng-hide(
+        on-tap="::controller.clearSearch()",
+        ng-show="search.query")
+    button.button.button-icon.icon.ion-search(on-tap="::controller.search()")
+  ion-content
+    ion-list
+      ion-item(ng-if="!search.results.length") No TV show found.
+      ion-item(
+        ng-repeat="show in search.results | orderBy:['name', '-fromYear'] track by show.id")
+        | #[strong {{ ::show.name }}] ({{ ::show.fromYear }})

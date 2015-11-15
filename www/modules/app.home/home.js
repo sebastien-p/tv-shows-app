@@ -2,7 +2,6 @@
  * @module app.home
  * @memberOf app
  */
-
 (function (module) {
   'use strict';
 
@@ -18,7 +17,8 @@
       url: '/home',
       views: {
         '': {
-          templateUrl: templateUtils.getUrlFromModule(module)
+          templateUrl: templateUtils.getUrlFromModule(module),
+          controller: 'homeController as controller'
         }
       }
     });
