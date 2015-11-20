@@ -1,0 +1,10 @@
+ion-view.show(view-title="{{ ::show.name }}")
+  ion-content
+    .padding
+      h1 {{ ::show.name }}
+      p {{ ::show.fromYear }}
+      p {{ ::show.seasons.length }} season(s)
+      p {{ ::show.description }}
+    ion-list
+      ion-item(ng-repeat="season in show.seasons | orderBy:'number' track by season.number")
+        strong Season {{ ::season.number }}

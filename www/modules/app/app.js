@@ -41,5 +41,6 @@
 }(angular.module('app', [
   'ngIOS9UIWebViewPatch',
   'fp.utils',
-  'app.home'
+  'app.home',
+  'app.show'
 ])));

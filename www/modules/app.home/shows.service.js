@@ -14,24 +14,34 @@
     var service = this;
 
     /**
-     * Get only the data from a given $http response object.
+     * Get resources using JSONP.
      * @private
-     * @function toData
-     * @param {Object} response - A $http reponse object.
-     * @return {*} The value of the data property.
+     * @function jsonp
+     * @param {String} url - String to append to SHOWS_API_URL.
+     * @param {Object} [params] - Params to pass in the query string.
+     * @return {Promise}
      */
-    function toData(response) { return response.data; }
+    function jsonp(url, params) {
+      params = _.extend({ callback: 'JSON_CALLBACK', s: 'thetvdb' }, params);
+      var promise = $http.jsonp(SHOWS_API_URL + url, { params: params });
+      return promise.then(function (response) { return response.data; });
+    }
 
     /**
-     * Search TV shows matching the given query.
+     * Search for TV shows matching a given query.
      * @method search
      * @param {String} query
      * @return {Promise}
      */
-    service.search = function (query) {
-      var params = { name: query, callback: 'JSON_CALLBACK' };
-      return $http.jsonp(SHOWS_API_URL, { params: params }).then(toData);
-    };
+    service.search = function (query) { return jsonp('', { name: query }); };
+
+    /**
+     * Get a TV show informations given its ID.
+     * @method getShow
+     * @param {String} showId
+     * @return {Promise}
+     */
+    service.getShow = function (id) { return jsonp('/' + id + '/info'); };
   }
 
   module.service('showsService', ['$http', 'SHOWS_API_URL', ShowsService]);
