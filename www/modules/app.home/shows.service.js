@@ -38,10 +38,20 @@
     /**
      * Get a TV show informations given its ID.
      * @method getShow
-     * @param {String} showId
+     * @param {String} id
      * @return {Promise}
      */
     service.getShow = function (id) { return jsonp('/' + id + '/info'); };
+
+    /**
+     * Get a TV show season episodes given its ID and the season number.
+     * @method getSeason
+     * @param {String} showId
+     * @param {Number} seasonNumber
+     * @return {Promise}
+     */
+    service.getSeason = function (showId, seasonNumber) {
+      return jsonp('/' + showId + '/season/' + seasonNumber); };
   }
 
   module.service('showsService', ['$http', 'SHOWS_API_URL', ShowsService]);

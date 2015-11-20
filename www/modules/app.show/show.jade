@@ -6,5 +6,8 @@ ion-view.show(view-title="{{ ::show.name }}")
       p {{ ::show.seasons.length }} season(s)
       p {{ ::show.description }}
     ion-list
-      ion-item(ng-repeat="season in show.seasons | orderBy:'number' track by season.number")
+      ion-item.item-icon-right(
+        ng-repeat="season in show.seasons | orderBy:'number' track by season.number",
+        ui-sref=".season({ seasonNumber: season.number })")
         strong Season {{ ::season.number }}
+        i.icon.ion-ios-arrow-forward

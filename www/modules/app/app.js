@@ -42,5 +42,6 @@
   'ngIOS9UIWebViewPatch',
   'fp.utils',
   'app.home',
-  'app.show'
+  'app.show',
+  'app.show.season'
 ])));
