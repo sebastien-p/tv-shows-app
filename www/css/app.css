@@ -1,4 +1,13 @@
 .home .item-input-wrapper .button,
 .home .item-input-wrapper .button:before { line-height: 28px !important; }
 
+.home .item-thumbnail-left { min-height: 0 !important; }
+
+.home .item-thumbnail-left .item-content { min-height: 66px !important; }
+
+.home .item-thumbnail-left img {
+  height: auto !important;
+  max-height: 45px !important;
+}
+
 .season .list:last-child { margin-bottom: 20px; }
