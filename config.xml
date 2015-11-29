@@ -13,6 +13,9 @@
     Sebastien Pittion
   </author>
   <content src="index.html"/>
+  <access origin="http://series-ortiz.rhcloud.com"/>
+  <access origin="http://webservice.fanart.tv"/>
+  <access origin="http://assets.fanart.tv"/>
   <access origin="mailto:*" launch-external="yes"/>
   <access origin="tel:*" launch-external="yes"/>
   <allow-intent href="mailto:*"/>
