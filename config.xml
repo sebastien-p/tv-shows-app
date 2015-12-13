@@ -16,12 +16,6 @@
   <access origin="http://series-ortiz.rhcloud.com"/>
   <access origin="http://webservice.fanart.tv"/>
   <access origin="http://assets.fanart.tv"/>
-  <access origin="mailto:*" launch-external="yes"/>
-  <access origin="tel:*" launch-external="yes"/>
-  <allow-intent href="mailto:*"/>
-  <allow-intent href="tel:*"/>
-  <allow-navigation href="mailto:*"/>
-  <allow-navigation href="tel:*"/>
   <preference name="phonegap-version" value="cli-5.2.0"/>
   <preference name="BackupWebStorage" value="none"/>
   <preference name="DisallowOverscroll" value="true"/>

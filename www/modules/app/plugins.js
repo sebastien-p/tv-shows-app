@@ -5,23 +5,6 @@
   'use strict';
 
   /**
-   * Define the module's Cordova plugins configuration.
-   * @private
-   * @function config
-   * @param {Object} $cordovaInAppBrowserProvider - InAppBrowser configurator.
-   */
-  function config($cordovaInAppBrowserProvider) {
-    $cordovaInAppBrowserProvider.setDefaultOptions({
-      mediaPlaybackRequiresUserAction: 'yes',
-      // closeButtonCaption: 'Close', // TODO?
-      enableViewportScale: 'yes',
-      clearSessionCache: 'yes',
-      clearCache: 'yes',
-      location: 'no'
-    });
-  }
-
-  /**
    * Setup the module's run lifecycle behavior.
    * @private
    * @function run
@@ -44,7 +27,6 @@
     });
   }
 
-  module.config(['$cordovaInAppBrowserProvider', config]);
   module.run([
     '$cordovaSplashscreen',
     '$cordovaStatusbar',

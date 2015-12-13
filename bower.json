@@ -7,8 +7,7 @@
     "lodash": "^3.10.0",
     "ionic": "^1.1.1",
     "ngCordova": "^0.1.23-alpha",
-    "angular-cache": "^4.4.2",
-    "gator": "ccampbell/gator#1.2.4"
+    "angular-cache": "^4.4.2"
   },
   "overrides": {
     "angular": {
@@ -27,12 +26,6 @@
       "main": {
         "development": "lodash.js",
         "production": "lodash.min.js"
-      }
-    },
-    "gator": {
-      "main": {
-        "development": "gator.js",
-        "production": "gator.min.js"
       }
     },
     "ionic": {

@@ -39,11 +39,9 @@
   "cordovaPlugins": [
     "ionic-plugin-keyboard",
     "cordova-plugin-device",
-    "cordova-plugin-inappbrowser",
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
     "cordova-plugin-whitelist",
-    "cordova-plugin-email",
     "cordova-plugin-transport-security",
     "cordova-plugin-x-toast"
   ],
