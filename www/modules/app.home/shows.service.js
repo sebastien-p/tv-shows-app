@@ -111,6 +111,27 @@
         });
       });
     };
+
+    /**
+     * Get a TV show informations given its ID, including art in results.
+     * @method getShowWithArt
+     * @param {String} id
+     * @return {Promise}
+     */
+    service.getShowWithArt = function (id) {
+      return $q.all({
+        arts: service.getShowArt(id),
+        show: service.getShow(id)
+      }).then(function (resolved) {
+        return _.extend(resolved.show, {
+          art: _.chain(resolved.arts.tvposter)
+            .where({ lang: 'en' })
+            .take(5)
+            .pluck('url')
+            .value()
+        });
+      });
+    };
   }
 
   module.service('showsService', [
