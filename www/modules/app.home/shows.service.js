@@ -34,7 +34,7 @@
      * Get resources.
      * @private
      * @function get
-     * @param {String} url.
+     * @param {String} url
      * @param {Object} [params] - Params to pass in the query string.
      * @return {Promise}
      */
@@ -95,7 +95,7 @@
     };
 
     /**
-     * Search for TV shows matching a given query, including arts in results.
+     * Search for TV shows matching a given query, including art in results.
      * @method searchWithArt
      * @param {String} query
      * @return {Promise}
