@@ -1,5 +1,12 @@
 ion-view.show(view-title="{{ ::show.name }}")
   ion-content
+    ion-slide-box(
+      ng-if="::show.art.length",
+      does-continue="true",
+      show-pager="false",
+      auto-play="true")
+      ion-slide(ng-repeat="url in ::show.art track by $index")
+        img(ng-src="{{ ::url }}", alt="{{ ::show.name }} - art {{ ::$index + 1 }}")
     .padding
       h1 {{ ::show.name }}
       p {{ ::show.fromYear }}

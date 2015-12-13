@@ -14,7 +14,7 @@
    * @return {Promise}
    */
   function showResolver($stateParams, showsService) {
-    return showsService.getShow($stateParams.showId);
+    return showsService.getShowWithArt($stateParams.showId);
   }
 
   /**

@@ -10,4 +10,19 @@
   max-height: 45px !important;
 }
 
+.show .scroll,
+.show .slider-slide { height: 100%; }
+
+.show .slider {
+  background-color: black;
+  height: 50%;
+}
+
+.show .slider-slide img {
+  display: block;
+  margin: 0 auto;
+  max-height: 100%;
+  max-width: 100%;
+}
+
 .season .list:last-child { margin-bottom: 20px; }
