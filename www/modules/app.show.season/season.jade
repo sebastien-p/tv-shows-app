@@ -1,7 +1,7 @@
 ion-view.season(view-title="Season {{ ::season.number }}")
   ion-content
     .list.list-inset(
-      ng-repeat="episode in season.episodes | orderBy:'number' track by episode.number")
+      ng-repeat="episode in ::season.episodes | orderBy:'number' track by episode.number")
       h2.item.item-divider.item-text-wrap
         | Episode {{ ::episode.number }}: {{ ::episode.name }}
       p.item.item-text-wrap {{ ::episode.description }}
