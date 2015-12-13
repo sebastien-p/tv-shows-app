@@ -7,11 +7,40 @@
   /**
    * The shows service.
    * @constructor ShowsService
+   * @param {Object} $q - The Angular $q service.
    * @param {Object} $http - The Angular $http service.
    * @param {String} SHOWS_API_URL - The shows API url.
+   * @param {String} SHOWS_ART_API_URL - The shows art API url.
+   * @param {String} SHOWS_ART_API_KEY - The shows art API key.
    */
-  function ShowsService($http, SHOWS_API_URL) {
+  function ShowsService(
+    $q,
+    $http,
+    SHOWS_API_URL,
+    SHOWS_ART_API_URL,
+    SHOWS_ART_API_KEY
+  ) {
     var service = this;
+
+    /**
+     * Return the $http response data.
+     * @method toData
+     * @param {Object} response - A $http reponse object.
+     * @return {*}
+     */
+    function toData(response) { return response.data; }
+
+    /**
+     * Get resources.
+     * @private
+     * @function get
+     * @param {String} url
+     * @param {Object} [params] - Params to pass in the query string.
+     * @return {Promise}
+     */
+    function get(url, params) {
+      return $http.get(url, { params: params }).then(toData);
+    }
 
     /**
      * Get resources using JSONP.
@@ -23,8 +52,7 @@
      */
     function jsonp(url, params) {
       params = _.extend({ callback: 'JSON_CALLBACK', s: 'thetvdb' }, params);
-      var promise = $http.jsonp(SHOWS_API_URL + url, { params: params });
-      return promise.then(function (response) { return response.data; });
+      return $http.jsonp(SHOWS_API_URL + url, { params: params }).then(toData);
     }
 
     /**
@@ -51,9 +79,68 @@
      * @return {Promise}
      */
     service.getSeason = function (showId, seasonNumber) {
-      return jsonp('/' + showId + '/season/' + seasonNumber); };
+      return jsonp('/' + showId + '/season/' + seasonNumber);
+    };
+
+    /**
+     * Get a TV show art given its ID.
+     * @method getShowArt
+     * @param {String} id
+     * @return {Promise}
+     */
+    service.getShowArt = function (id) {
+      var params = { api_key: SHOWS_ART_API_KEY };
+      function fallback() { return { thetvdb_id: id }; }
+      return get(SHOWS_ART_API_URL + id, params).catch(fallback);
+    };
+
+    /**
+     * Search for TV shows matching a given query, including art in results.
+     * @method searchWithArt
+     * @param {String} query
+     * @return {Promise}
+     */
+    service.searchWithArt = function (query) {
+      return service.search(query).then(function (results) {
+        var promises = _(results).pluck('id').map(service.getShowArt).value();
+        return $q.all(promises).then(function (arts) {
+          return _.each(results, function (result, index) {
+            var art = _.findWhere(arts[index].tvthumb, { lang: 'en' });
+            result.art = art ? art.url : null;
+          });
+        });
+      });
+    };
+
+    /**
+     * Get a TV show informations given its ID, including art in results.
+     * @method getShowWithArt
+     * @param {String} id
+     * @return {Promise}
+     */
+    service.getShowWithArt = function (id) {
+      return $q.all({
+        arts: service.getShowArt(id),
+        show: service.getShow(id)
+      }).then(function (resolved) {
+        return _.extend(resolved.show, {
+          art: _.chain(resolved.arts.tvposter)
+            .where({ lang: 'en' })
+            .take(5)
+            .pluck('url')
+            .value()
+        });
+      });
+    };
   }
 
-  module.service('showsService', ['$http', 'SHOWS_API_URL', ShowsService]);
+  module.service('showsService', [
+    '$q',
+    '$http',
+    'SHOWS_API_URL',
+    'SHOWS_ART_API_URL',
+    'SHOWS_ART_API_KEY',
+    ShowsService
+  ]);
 
 }(angular.module('app.home')));

@@ -1,4 +1,28 @@
 .home .item-input-wrapper .button,
 .home .item-input-wrapper .button:before { line-height: 28px !important; }
 
+.home .item-thumbnail-left { min-height: 0 !important; }
+
+.home .item-thumbnail-left .item-content { min-height: 66px !important; }
+
+.home .item-thumbnail-left img {
+  height: auto !important;
+  max-height: 45px !important;
+}
+
+.show .scroll,
+.show .slider-slide { height: 100%; }
+
+.show .slider {
+  background-color: black;
+  height: 50%;
+}
+
+.show .slider-slide img {
+  display: block;
+  margin: 0 auto;
+  max-height: 100%;
+  max-width: 100%;
+}
+
 .season .list:last-child { margin-bottom: 20px; }

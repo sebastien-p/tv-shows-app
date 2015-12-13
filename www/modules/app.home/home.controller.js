@@ -25,7 +25,7 @@
      */
     controller.search = function () {
       if (!$scope.search.query) { return; }
-      var promise = showsService.search($scope.search.query);
+      var promise = showsService.searchWithArt($scope.search.query);
       promise.then(function (results) { $scope.search.results = results; });
     };
 
