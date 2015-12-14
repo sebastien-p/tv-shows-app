@@ -1,5 +1,5 @@
 /**
- * @memberOf app.show
+ * @memberOf app.show.season
  */
 (function (module) {
   'use strict';
