@@ -6,6 +6,7 @@ globals:
   ionic: false
   _: false
   Gator: false
+  moment: false
 rules:
   consistent-this: 0
   func-names: 0

@@ -7,7 +7,8 @@
     "lodash": "^3.10.0",
     "ionic": "1.1.1",
     "ngCordova": "^0.1.23-alpha",
-    "angular-cache": "^4.4.2"
+    "angular-cache": "^4.4.2",
+    "moment": "^2.10.6"
   },
   "overrides": {
     "angular": {
@@ -46,6 +47,12 @@
       "main": {
         "development": "dist/angular-cache.js",
         "production": "dist/angular-cache.min.js"
+      }
+    },
+    "moment": {
+      "main": {
+        "development": "moment.js",
+        "production": "min/moment.min.js"
       }
     }
   }
