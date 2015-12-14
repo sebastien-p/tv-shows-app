@@ -5,4 +5,9 @@ ion-view.season(view-title="Season {{ ::season.number }}")
       h2.item.item-divider.item-text-wrap
         | Episode {{ ::episode.number }}: {{ ::episode.name }}
       p.item.item-text-wrap {{ ::episode.description }}
+      p.item
+        button.button.button-small.button-assertive(
+          ng-if="::controller.hasNotAiredYet(episode)",
+          on-tap="::controller.addToCalendar(episode)")
+          | #[i.icon.ion-calendar] Add event to calendar
       p.item.item-divider {{ ::episode.date }}
