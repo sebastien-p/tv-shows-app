@@ -4,7 +4,7 @@ ion-view.season(view-title="Season {{ ::season.number }}")
       ng-repeat="episode in ::season.episodes | orderBy:'number' track by episode.number")
       h2.item.item-divider.item-text-wrap
         | Episode {{ ::episode.number }}: {{ ::episode.name }}
-      p.item.item-text-wrap {{ ::episode.description }}
+      p.item.item-text-wrap {{ ::episode.description || 'No description' }}
       p.item
         button.button.button-small.button-assertive(
           ng-if="::controller.hasNotAiredYet(episode)",
