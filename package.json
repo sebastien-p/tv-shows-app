@@ -44,7 +44,8 @@
     "cordova-plugin-whitelist",
     "cordova-plugin-transport-security",
     "cordova-plugin-x-toast",
-    "cordova-plugin-calendar"
+    "cordova-plugin-calendar",
+    "cordova-plugin-vibration"
   ],
   "cordovaPlatforms": [
     "ios",
