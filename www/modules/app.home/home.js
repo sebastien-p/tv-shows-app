@@ -6,6 +6,17 @@
   'use strict';
 
   /**
+   * Get favorite shows.
+   * @private
+   * @function favoritesResolver
+   * @param {[type]} showsService - The shows service.
+   * @return {Array}
+   */
+  function favoritesResolver(showsService) {
+    return showsService.getFavoriteShows();
+  }
+
+  /**
    * Define the module's configuration.
    * @private
    * @function config
@@ -20,6 +31,9 @@
           templateUrl: templateUtils.getUrlFromModule(module),
           controller: 'homeController as controller'
         }
+      },
+      resolve: {
+        favorites: ['showsService', favoritesResolver]
       }
     });
   }

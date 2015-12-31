@@ -22,3 +22,13 @@ ion-view.home(view-title="Home")
         p: strong {{ ::show.name }}
         p {{ ::show.fromYear }}
         i.icon.ion-ios-arrow-forward
+      ion-item.item-divider
+        i.icon.ion-android-star
+        | &nbsp;Favorites
+      ion-item(ng-if="!favorites.length") No favorite shows found.
+      ion-item.item-icon-right(
+        ng-repeat="show in favorites | orderBy:['name', '-fromYear'] track by show.id",
+        ui-sref="show({ showId: show.id })")
+        p: strong {{ ::show.name }}
+        p {{ ::show.fromYear }}
+        i.icon.ion-ios-arrow-forward

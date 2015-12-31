@@ -9,6 +9,7 @@
    * @constructor ShowsService
    * @param {Object} $q - The Angular $q service.
    * @param {Object} $http - The Angular $http service.
+   * @param {Object} cacheUtils - Some caching utilities.
    * @param {String} SHOWS_API_URL - The shows API url.
    * @param {String} SHOWS_ART_API_URL - The shows art API url.
    * @param {String} SHOWS_ART_API_KEY - The shows art API key.
@@ -16,11 +17,20 @@
   function ShowsService(
     $q,
     $http,
+    cacheUtils,
     SHOWS_API_URL,
     SHOWS_ART_API_URL,
     SHOWS_ART_API_KEY
   ) {
     var service = this;
+
+    /**
+     * Get a persistant cache associated to the module.
+     * @private
+     * @function getModuleCache
+     * @return {Object}
+     */
+    function getModuleCache() { return cacheUtils.getModuleCache(module); }
 
     /**
      * Return the $http response data.
@@ -69,7 +79,13 @@
      * @param {String} id
      * @return {Promise}
      */
-    service.getShow = function (id) { return jsonp('/' + id + '/info'); };
+    service.getShow = function (id) {
+      return jsonp('/' + id + '/info').then(function (show) {
+        show.id = id;
+        show.favorite = service.isFavoriteShow(show);
+        return show;
+      });
+    };
 
     /**
      * Get a TV show season episodes given its ID and the season number.
@@ -132,11 +148,46 @@
         });
       });
     };
+
+    /**
+     * Get favorite shows.
+     * @method getFavoriteShows
+     * @return {Array} Can be empty.
+     */
+    service.getFavoriteShows = function () {
+      return getModuleCache().get('favorites') || [];
+    };
+
+    /**
+     * Check if a given show is part of the favorite list.
+     * @method isFavoriteShow
+     * @param {Object} show - A JSON show object containing an `id` property.
+     * @return {Boolean}
+     */
+    service.isFavoriteShow = function (show) {
+      return !!_.findWhere(service.getFavoriteShows(), _.pick(show, 'id'));
+    };
+
+    /**
+     * Add or remove a given show to/from the favorite list.
+     * @method setShowFavoriteStatus
+     * @param {Object} show - A JSON show object containing some
+     *   `id`, `name` and `fromYear` properties.
+     * @param {Boolean} status - Add if `true`, remove if `false`.
+     */
+    service.setShowFavoriteStatus = function (show, status) {
+      var favorite = service.getFavoriteShows();
+      if (!status) { _.remove(favorite, _.pick(show, 'id')); }
+      else if (service.isFavoriteShow(show)) { return; }
+      else { favorite.push(_.pick(show, 'id', 'name', 'fromYear')); }
+      getModuleCache().put('favorites', favorite);
+    };
   }
 
   module.service('showsService', [
     '$q',
     '$http',
+    'cacheUtils',
     'SHOWS_API_URL',
     'SHOWS_ART_API_URL',
     'SHOWS_ART_API_KEY',

@@ -13,6 +13,11 @@ ion-view.show(view-title="{{ ::show.name }}")
       p {{ ::show.seasons.length }} season(s)
       p {{ ::show.description }}
     ion-list
+      ion-toggle(
+        ng-change="::controller.setFavoriteStatus(show.favorite)",
+        ng-model="show.favorite")
+        i.icon.ion-android-star
+        | &nbsp;Favorite
       ion-item.item-icon-right(
         ng-repeat="season in show.seasons | orderBy:'number' track by season.number",
         ui-sref=".season({ seasonNumber: season.number })")
