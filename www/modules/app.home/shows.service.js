@@ -34,7 +34,8 @@
 
     /**
      * Return the $http response data.
-     * @method toData
+     * @private
+     * @function toData
      * @param {Object} response - A $http reponse object.
      * @return {*}
      */
@@ -105,6 +106,7 @@
      * @return {Promise}
      */
     service.getShowArt = function (id) {
+      /*eslint camelcase:1 */
       var params = { api_key: SHOWS_ART_API_KEY };
       function fallback() { return { thetvdb_id: id }; }
       return get(SHOWS_ART_API_URL + id, params).catch(fallback);

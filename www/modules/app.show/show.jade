@@ -6,7 +6,9 @@ ion-view.show(view-title="{{ ::show.name }}")
       show-pager="false",
       auto-play="true")
       ion-slide(ng-repeat="url in ::show.art track by $index")
-        img(ng-src="{{ ::url }}", alt="{{ ::show.name }} - art {{ ::$index + 1 }}")
+        img(
+          alt="{{ ::show.name }} - art {{ ::$index + 1 }}",
+          ng-src="{{ ::url }}")
     .padding
       h1 {{ ::show.name }}
       p {{ ::show.fromYear }}
