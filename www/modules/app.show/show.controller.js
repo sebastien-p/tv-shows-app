@@ -26,7 +26,6 @@
      * @param {Boolean} status - Add if `true`, remove if `false`.
      */
     controller.setFavoriteStatus = function (status) {
-      console.log(arguments);
       if ($scope.show.favorite !== status) { $scope.show.favorite = status; }
       showsService.setShowFavoriteStatus($scope.show, status);
     };
