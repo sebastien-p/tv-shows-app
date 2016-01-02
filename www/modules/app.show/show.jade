@@ -1,0 +1,27 @@
+ion-view.show(view-title="{{ ::show.name }}")
+  ion-content
+    ion-slide-box(
+      ng-if="::show.art.length",
+      does-continue="true",
+      show-pager="false",
+      auto-play="true")
+      ion-slide(ng-repeat="url in ::show.art track by $index")
+        img(
+          alt="{{ ::show.name }} - art {{ ::$index + 1 }}",
+          ng-src="{{ ::url }}")
+    .padding
+      h1 {{ ::show.name }}
+      p {{ ::show.fromYear }}
+      p {{ ::show.seasons.length }} season(s)
+      p {{ ::show.description }}
+    ion-list
+      ion-toggle(
+        ng-change="::controller.setFavoriteStatus(show.favorite)",
+        ng-model="show.favorite")
+        i.icon.ion-android-star
+        | &nbsp;Favorite
+      ion-item.item-icon-right(
+        ng-repeat="season in show.seasons | orderBy:'number' track by season.number",
+        ui-sref=".season({ seasonNumber: season.number })")
+        strong Season {{ ::season.number }}
+        i.icon.ion-ios-arrow-forward

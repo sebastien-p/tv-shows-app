@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta name="format-detection" content="telephone=no">
+    <title>Ionic app starter</title>
+    <!-- build:css lib.css -->
+    <link rel="stylesheet" href="lib/ionic/release/css/ionic.css">
+    <!-- bower:css -->
+    <!-- endinject -->
+    <link rel="stylesheet" href="css/app.css">
+    <!-- endbuild -->
+    <!-- build:js lib.min.js -->
+    <!-- bower:js -->
+    <script src="lib/lodash/lodash.js"></script>
+    <script src="lib/ionic/release/js/ionic.bundle.js"></script>
+    <script src="lib/ngCordova/dist/ng-cordova.js"></script>
+    <script src="lib/moment/moment.js"></script>
+    <script src="lib/angular-cache/dist/angular-cache.js"></script>
+    <!-- endinject -->
+    <!-- endbuild -->
+    <script src="cordova.js"></script>
+    <!-- build:js app.min.js -->
+    <!-- inject:js -->
+    <script src="modules/fp.utils/utils.js"></script>
+    <script src="modules/fp.utils/template-utils.js"></script>
+    <script src="modules/fp.utils/interceptor-utils.js"></script>
+    <script src="modules/fp.utils/cordova-utils.js"></script>
+    <script src="modules/fp.utils/cache-utils.js"></script>
+    <script src="modules/app.show.season/season.js"></script>
+    <script src="modules/app.show.season/season.controller.js"></script>
+    <script src="modules/app.show.season/calendar.service.js"></script>
+    <script src="modules/app.show/show.js"></script>
+    <script src="modules/app.show/show.controller.js"></script>
+    <script src="modules/app.home/home.js"></script>
+    <script src="modules/app.home/shows.service.js"></script>
+    <script src="modules/app.home/shows.constants.js"></script>
+    <script src="modules/app.home/home.controller.js"></script>
+    <script src="modules/app/app.js"></script>
+    <script src="modules/app/plugins.js"></script>
+    <script src="modules/app/loading.interceptor.js"></script>
+    <script src="modules/app/app.templates.js"></script>
+    <!-- endinject -->
+    <!-- endbuild -->
+  </head>
+  <body ng-app="app" ng-strict-di>
+    <ion-nav-bar class="bar-calm">
+      <ion-nav-back-button></ion-nav-back-button>
+    </ion-nav-bar>
+    <ion-nav-view></ion-nav-view>
+  </body>
+</html>

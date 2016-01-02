@@ -1,0 +1,34 @@
+ion-view.home(view-title="Home")
+  ion-header-bar.bar-subheader.bar-dark.item-input-inset(no-tap-scroll="true")
+    label.item-input-wrapper
+      input(
+        placeholder="Enter a TV show name",
+        ng-model="search.query",
+        type="search")
+      button.button.button-clear.button-dark.icon.ion-ios-close-empty.ng-hide(
+        on-tap="::controller.clearSearch()",
+        ng-show="search.query")
+    button.button.button-icon.icon.ion-search(on-tap="::controller.search()")
+  ion-content
+    ion-list
+      ion-item(ng-if="!search.results.length") No TV show found.
+      ion-item.item-thumbnail-left.item-icon-right(
+        ng-repeat="show in search.results | orderBy:['name', '-fromYear'] track by show.id",
+        ui-sref="show({ showId: show.id })")
+        img(
+          ng-if="::show.art",
+          ng-src="{{ ::show.art }}",
+          alt="{{ ::show.name }} - art")
+        p: strong {{ ::show.name }}
+        p {{ ::show.fromYear }}
+        i.icon.ion-ios-arrow-forward
+      ion-item.item-divider
+        i.icon.ion-android-star
+        | &nbsp;Favorites
+      ion-item(ng-if="!favorites.length") No favorite shows found.
+      ion-item.item-icon-right(
+        ng-repeat="show in favorites | orderBy:['name', '-fromYear'] track by show.id",
+        ui-sref="show({ showId: show.id })")
+        p: strong {{ ::show.name }}
+        p {{ ::show.fromYear }}
+        i.icon.ion-ios-arrow-forward
