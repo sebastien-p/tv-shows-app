@@ -1,0 +1,3 @@
+#!/bin/bash
+
+npm install --ignore-scripts && ./node_modules/.bin/gulp install && ./node_modules/.bin/gulp
