@@ -1,6 +1,7 @@
 .build.cache/
 node_modules/
-platforms/
+platforms/*
+!platforms/platforms.json
 plugins/
 build/
 www/lib/
