@@ -48,7 +48,6 @@
     "cordova-plugin-vibration"
   ],
   "cordovaPlatforms": [
-    "ios",
     "android"
   ]
 }
